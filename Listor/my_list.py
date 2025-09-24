@@ -71,50 +71,53 @@ class My_list:
                 print (self._data)
                 return
         
-        print (f"Du är en idiot, '{value}' är inte med i listan.")
+        print (f"{value} is not in list")
       
         # TODO: hitta index för värdet, flytta elementen åt vänster
    
-
-    def pop(self, index):
+    def pop(self, index = None):
         """Ta bort och returnera elementet på en viss position (eller sist)."""
-        
-        for i in range(self._size):
-            if i == index:
-                self.remove((self._data[i]))
-                print (self._data[i])
- 
+        if index:
+            if index > self._size -1:
+                print (f"Index {index} out of scoope of list")
+                return 
+
+            self.remove((self._data[index]))
+            return (self._data[index])
+        else:
+            self.remove(self._data[self._size - 1])
+            return (self._data[self._size - 1])
+
     def get(self, index):
         """Returnera värdet på en viss position."""
 
-        if self._capacity < index:
+        if self._size -1 < index:
+            print (f"Index {index} out of scoope of list")
             return
 
         print (self._data[index])
-
  
     def set(self, index, value):
         """Ändra värdet på en viss position."""
 
-        if self.size < index:
+        if self._size -1 < index:
+            print (f"Index {index} out of scoope of list")
             return
 
         self._data[index] = value
 
- 
     def size(self):
         """Returnerar antal element."""
-        size = 0
-        
-        for i in range(self._size):
-            size += 1
-        
-        print (f"{size} elements in the list")
+        return (self._size)
  
     def isEmpty(self):
         """Returnerar True/False beroende på om listan är tom."""
-        pass
- 
+
+        if (self._size == 0):
+            return False
+        else:
+            return True
+        
     def __str__(self):
         """Returnerar en strängrepresentation, t.ex. [1, 2, 3]."""
 
@@ -123,17 +126,8 @@ class My_list:
             string += f"{self._data[i]}, "
         string += f"]"
         return string
-    pass
 
 
-lista = My_list(5)
-lista.append("1")
-lista.append("2")
-lista.append("3")
-lista.append("4")
-lista.append("5")
-
-lista.remove("2")
 
 
 
